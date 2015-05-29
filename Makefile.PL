@@ -21,6 +21,17 @@ WriteMakefile(
         #'ABC'              => 1.6,
         #'Foo::Bar::Module' => 5.0401,
     },
+
+    (! eval { ExtUtils::MakeMaker->VERSION(6.46) } ? () :
+        (META_ADD => {
+          resources => {
+              homepage   => 'https://github.com/Leprevost/ProtXML-Parser',
+                repository => 'https://github.com/Leprevost/ProtXML-Parser.git',
+                bugtracker => 'https://rt.cpan.org/NoAuth/Bugs.html?Dist=ProtXML-Parser',
+            },
+        })
+    ),
+
     dist  => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean => { FILES => 'ProtXML-Parser-*' },
 );
