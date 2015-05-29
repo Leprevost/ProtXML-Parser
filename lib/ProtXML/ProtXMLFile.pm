@@ -19,4 +19,11 @@ has 'protein_summary' => (
 	);
 
 
+sub get_protein_summary {
+	my $self = shift;
+
+	return $self->protein_summary;
+}
+
+
   1;

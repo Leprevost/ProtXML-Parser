@@ -36,6 +36,8 @@ sub parse {
 		twig_handlers =>
 		{
 
+			protein_summary		=>	\&parse_protein_summary,
+
 		},
 		pretty_print => 'indented',
 	);
@@ -45,6 +47,20 @@ sub parse {
 	#from globals to object
 
 	return $self->protxmlfile;
+}
+
+
+sub parse_protein_summary {
+	my ( $parser, $node ) = @_;
+
+	my $ps = ProtXML::ProteinSummary->new();
+
+	$ps->xmlns($node->{'att'}->{'xmlns'});
+	$ps->xmlns_xsi($node->{'att'}->{'xmlns:xsi'});
+	$ps->xmlns_schemaLocation($node->{'att'}->{'xsi:schemaLocation'});
+	$ps->summary_xml($node->{'att'}->{'summary_xml'});
+
+	$package->protxmlfile->protein_summary($ps);
 }
 
 1;
