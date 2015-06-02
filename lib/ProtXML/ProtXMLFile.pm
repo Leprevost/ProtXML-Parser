@@ -7,6 +7,7 @@ use XML::Twig;
 use Moose;
 use namespace::autoclean;
 use ProtXML::ProteinSummary;
+use ProtXML::ProteinSummaryHeader;
 
 
 has 'protein_summary' => (
@@ -17,12 +18,29 @@ has 'protein_summary' => (
         return my $obj = ProtXML::ProteinSummary->new();
     	}
 	);
+	
+	
+has 'protein_summary_header' => (
+	is	=>	'rw',
+	isa	=>	'ProtXML::ProteinSummaryHeader',
+	default => sub {
+    	my $self = shift;
+        return my $obj = ProtXML::ProteinSummaryHeader->new();
+    	}
+	);
 
 
 sub get_protein_summary {
 	my $self = shift;
 
 	return $self->protein_summary;
+}
+
+
+sub get_protein_summary_header {
+	my $self = shift;
+
+	return $self->protein_summary_header;
 }
 
 
